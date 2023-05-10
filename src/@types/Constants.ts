@@ -1,0 +1,8 @@
+export enum Messages {
+  LOGIN = "LOGIN",
+  GET_ME = "GET_ME",
+  REFRESH = "REFRESH",
+  LOGOUT = "LOGOUT",
+  GET_TRANSLATE = "GET_TRANSLATE",
+  POST_CARD = "POST_CARD",
+}

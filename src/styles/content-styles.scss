@@ -1,0 +1,294 @@
+english-tools-content-script-root {
+  & > div#english-tools-btn-add-open-form {
+    font-weight: 600;
+    font-size: 18px;
+    color: black;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    width: 46px;
+    height: 46px;
+    border-radius: 50%;
+    border: 2px solid rgb(48, 48, 226);
+    background: #eee;
+    position: absolute;
+    z-index: 1000;
+    cursor: pointer;
+
+    &:hover {
+      background: rgb(218, 217, 217);
+    }
+
+    &.visible {
+      display: flex;
+    }
+
+    &::after {
+      content: "";
+      display: none;
+      margin: 0;
+      background: transparent;
+      width: 15%;
+      height: 15%;
+      border-radius: 50%;
+      position: absolute;
+      text-indent: -9999em;
+      animation: load 0.8s infinite ease;
+      box-shadow: 10px 10px 0 0 rgba(0, 0, 0, 0.7);
+    }
+
+    &.loading {
+      color: transparent;
+      &::after {
+        display: block;
+      }
+    }
+  }
+
+  & > form#english-tools-form-add-card {
+    padding: 16px;
+    font-size: 16px;
+    color: black;
+    display: none;
+    width: 300px;
+    justify-content: space-between;
+    flex-flow: wrap;
+    border-radius: 6px;
+    border: 1px solid rgb(48, 48, 226);
+    background: #eee;
+    position: absolute;
+    z-index: 1000;
+
+    &.visible {
+      display: flex;
+    }
+
+    & > h3#form-title {
+      font-size: 20px;
+      flex: 0 0 100%;
+      margin: 0 0 16px 0;
+      cursor: move;
+    }
+
+    & > input {
+      width: calc(50% - 8px);
+      margin-bottom: 16px;
+      border-radius: 6px;
+      border: 1px solid lightgray;
+      height: 34px;
+      padding: 10px;
+      outline: none;
+
+      &:focus {
+        border: 1px solid rgb(48, 48, 226);
+      }
+    }
+
+    & > input#input-translate {
+    }
+
+    & > div#form-loader {
+      position: absolute;
+      top: 2px;
+      right: 2px;
+      width: 40px;
+      height: 40px;
+
+      &::after {
+        content: "";
+        display: none;
+        background: transparent;
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
+        position: absolute;
+        left: calc(50% - 3px);
+        top: calc(50% - 3px);
+        animation: load 0.8s infinite ease;
+        box-shadow: 10px 10px 0 0 rgba(0, 0, 0, 0.7);
+      }
+
+      &::before {
+        content: "";
+        display: none;
+        background: #5bdd75;
+        width: 100%;
+        height: 100%;
+        clip-path: polygon(33% 46%, 50% 68%, 86% 17%, 51% 87%, 20% 57%);
+      }
+    }
+
+    &.loading {
+      & > button#btn-close {
+        display: none;
+      }
+
+      & > div#form-loader {
+        &::after {
+          display: block;
+        }
+      }
+    }
+
+    &.success {
+      & > button#btn-close {
+        display: none;
+      }
+
+      & > div#form-loader {
+        &::before {
+          display: block;
+        }
+      }
+    }
+
+    & > button#btn-submit {
+      background: #5bdd75;
+      cursor: pointer;
+      flex: 0 0 100%;
+      border: none;
+      outline: none;
+      height: 34px;
+      border-radius: 6px;
+
+      &:hover {
+        background: #4dbd63;
+      }
+    }
+
+    & > button#btn-close {
+      position: absolute;
+      top: 8px;
+      right: 8px;
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      border: none;
+      cursor: pointer;
+      z-index: 1;
+
+      &:hover {
+        border: 1px solid lightgray;
+      }
+
+      &::after,
+      &::before {
+        content: "";
+        display: block;
+        background: gray;
+        width: 2px;
+        height: 16px;
+        border-radius: 50%;
+        position: absolute;
+        left: calc(50% - 1px);
+        top: calc(50% - 8px);
+      }
+
+      &::before {
+        transform: rotate(45deg);
+      }
+
+      &::after {
+        transform: rotate(-45deg);
+      }
+    }
+  }
+}
+
+$shadow-position: 0.5em;
+$shadow-position-n: -0.5em;
+$shadow-position-second: 0.7em;
+$shadow-position-second-n: -0.7em;
+
+$shadow-color-1: rgba(0, 0, 0, 0.1);
+$shadow-color-2: rgba(0, 0, 0, 0.2);
+$shadow-color-3: rgba(0, 0, 0, 0.3);
+$shadow-color-4: rgba(0, 0, 0, 0.4);
+$shadow-color-5: rgba(0, 0, 0, 0.5);
+$shadow-color-6: rgba(0, 0, 0, 0.6);
+$shadow-color-7: rgba(0, 0, 0, 0.7);
+$shadow-color-8: rgba(0, 0, 0, 0.8);
+
+@keyframes load {
+  0%,
+  100% {
+    box-shadow: 0em $shadow-position-second-n 0em 0em $shadow-color-1,
+      $shadow-position $shadow-position-n 0 0em $shadow-color-2,
+      $shadow-position-second 0em 0 0em $shadow-color-3,
+      $shadow-position $shadow-position 0 0em $shadow-color-4,
+      0em $shadow-position-second 0 0em $shadow-color-5,
+      $shadow-position-n $shadow-position 0 0em $shadow-color-6,
+      $shadow-position-second-n 0em 0 0em $shadow-color-7,
+      $shadow-position-n $shadow-position-n 0 0em $shadow-color-8;
+  }
+  12.5% {
+    box-shadow: 0em $shadow-position-second-n 0em 0em $shadow-color-8,
+      $shadow-position $shadow-position-n 0 0em $shadow-color-1,
+      $shadow-position-second 0em 0 0em $shadow-color-2,
+      $shadow-position $shadow-position 0 0em $shadow-color-3,
+      0em $shadow-position-second 0 0em $shadow-color-4,
+      $shadow-position-n $shadow-position 0 0em $shadow-color-5,
+      $shadow-position-second-n 0em 0 0em $shadow-color-6,
+      $shadow-position-n $shadow-position-n 0 0em $shadow-color-7;
+  }
+  25% {
+    box-shadow: 0em $shadow-position-second-n 0em 0em $shadow-color-7,
+      $shadow-position $shadow-position-n 0 0em $shadow-color-8,
+      $shadow-position-second 0em 0 0em $shadow-color-1,
+      $shadow-position $shadow-position 0 0em $shadow-color-2,
+      0em $shadow-position-second 0 0em $shadow-color-3,
+      $shadow-position-n $shadow-position 0 0em $shadow-color-4,
+      $shadow-position-second-n 0em 0 0em $shadow-color-5,
+      $shadow-position-n $shadow-position-n 0 0em $shadow-color-6;
+  }
+  37.5% {
+    box-shadow: 0em $shadow-position-second-n 0em 0em $shadow-color-6,
+      $shadow-position $shadow-position-n 0 0em $shadow-color-7,
+      $shadow-position-second 0em 0 0em $shadow-color-8,
+      $shadow-position $shadow-position 0 0em $shadow-color-1,
+      0em $shadow-position-second 0 0em $shadow-color-2,
+      $shadow-position-n $shadow-position 0 0em $shadow-color-3,
+      $shadow-position-second-n 0em 0 0em $shadow-color-4,
+      $shadow-position-n $shadow-position-n 0 0em $shadow-color-5;
+  }
+  50% {
+    box-shadow: 0em $shadow-position-second-n 0em 0em $shadow-color-5,
+      $shadow-position $shadow-position-n 0 0em $shadow-color-6,
+      $shadow-position-second 0em 0 0em $shadow-color-7,
+      $shadow-position $shadow-position 0 0em $shadow-color-8,
+      0em $shadow-position-second 0 0em $shadow-color-1,
+      $shadow-position-n $shadow-position 0 0em $shadow-color-2,
+      $shadow-position-second-n 0em 0 0em $shadow-color-3,
+      $shadow-position-n $shadow-position-n 0 0em $shadow-color-4;
+  }
+  62.5% {
+    box-shadow: 0em $shadow-position-second-n 0em 0em $shadow-color-4,
+      $shadow-position $shadow-position-n 0 0em $shadow-color-5,
+      $shadow-position-second 0em 0 0em $shadow-color-6,
+      $shadow-position $shadow-position 0 0em $shadow-color-7,
+      0em $shadow-position-second 0 0em $shadow-color-8,
+      $shadow-position-n $shadow-position 0 0em $shadow-color-1,
+      $shadow-position-second-n 0em 0 0em $shadow-color-2,
+      $shadow-position-n $shadow-position-n 0 0em $shadow-color-3;
+  }
+  75% {
+    box-shadow: 0em $shadow-position-second-n 0em 0em $shadow-color-3,
+      $shadow-position $shadow-position-n 0 0em $shadow-color-4,
+      $shadow-position-second 0em 0 0em $shadow-color-5,
+      $shadow-position $shadow-position 0 0em $shadow-color-6,
+      0em $shadow-position-second 0 0em $shadow-color-7,
+      $shadow-position-n $shadow-position 0 0em $shadow-color-8,
+      $shadow-position-second-n 0em 0 0em $shadow-color-1,
+      $shadow-position-n $shadow-position-n 0 0em $shadow-color-2;
+  }
+  87.5% {
+    box-shadow: 0em $shadow-position-second-n 0em 0em $shadow-color-2,
+      $shadow-position $shadow-position-n 0 0em $shadow-color-3,
+      $shadow-position-second 0em 0 0em $shadow-color-4,
+      $shadow-position $shadow-position 0 0em $shadow-color-5,
+      0em $shadow-position-second 0 0em $shadow-color-6,
+      $shadow-position-n $shadow-position 0 0em $shadow-color-7,
+      $shadow-position-second-n 0em 0 0em $shadow-color-8,
+      $shadow-position-n $shadow-position-n 0 0em $shadow-color-1;
+  }
+}
